@@ -68,8 +68,8 @@ class _GenericAnnotator(utopia.document.Annotator):
         #return re.compile("(functional abnormalities|structural abnormalities|temporoparietal junction|ventrolateral prefrontal)")
 
     @utopia.document.buffer # Wrap/buffer the function
-    def on_ready_event(self, document):
-    #def on_activate_event(self, document):
+    #def on_ready_event(self, document):
+    def on_activate_event(self, document):
         _debug('activate base')
         # Scan the document for some regular expression
         matches = document.search(
