@@ -168,6 +168,7 @@ class NeuroVaultAnnotator(utopia.document.Annotator):
 
     API_URL = "http://neurovault.org/api"
     IMAGES_URL = "http://neurovault.org/images/%s"
+    COLLECTIONS_URL = "http://neurovault.org/collections/%s"
 
     def _get_collection_by_doi(self, doi):
         if doi is None:
@@ -200,7 +201,9 @@ class NeuroVaultAnnotator(utopia.document.Annotator):
         if not collection:
             return None
         image_ids = self._get_collection_images(collection)
-        htmls = []
+        htmls = [
+            """<p><a href="{}" title="View collection on NeuroVault">View collection on NeuroVault</a></p>""".format(self.COLLECTIONS_URL % collection['id'])
+            ]
         for image_id in image_ids:
             info = self._get_image_metainfo(image_id)
             if not info:
